@@ -35,6 +35,8 @@ import {
   CardsContainer,
   CoursesContainer,
 } from "./styles";
+import store from "../../store";
+import ModalLogin from "../../components/ModalLogin";
 
 const CardsQuery = gql`
   {
@@ -81,7 +83,9 @@ export default function Home() {
   const { loading, error, data } = useQuery(CardsQuery);
 
   function handleOpenMenu() {
-    dispatch(openMenu());
+    store.dispatch({
+      type: "OPEN_MENU",
+    });
   }
 
   useEffect(() => {
@@ -196,6 +200,7 @@ export default function Home() {
         </SaveAreaContainer>
       </Animated.View>
       <StatusBar />
+      <ModalLogin />
     </RootView>
   );
 }

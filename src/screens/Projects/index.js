@@ -34,8 +34,7 @@ export default function Projects() {
         if (gestureState.dx === 0 && gestureState.dy === 0) {
           return false;
         } else {
-          if (action === "openCard") {
-            return false;
+          if (store.getState().app.action === "openCard") {
           } else {
             return true;
           }

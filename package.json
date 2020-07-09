@@ -16,6 +16,7 @@
     "apollo-boost": "^0.4.9",
     "axios": "^0.19.2",
     "expo": "~38.0.8",
+    "expo-blur": "~8.1.2",
     "expo-linear-gradient": "~8.2.1",
     "expo-status-bar": "^1.0.2",
     "graphql": "^15.3.0",

@@ -14,6 +14,7 @@ import {
 import MenuItem from "../MenuItem";
 import { useSelector, useDispatch } from "react-redux";
 import { closeMenu } from "../../store/actions/AppActions";
+import store from "../../store";
 
 const { height, width } = Dimensions.get("window");
 
@@ -21,8 +22,6 @@ export default function Menu() {
   const [top, setTop] = useState(new Animated.Value(height));
 
   const action = useSelector((state) => state.app.action);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (action == "openMenu") {
@@ -41,7 +40,9 @@ export default function Menu() {
   }, [action]);
 
   function handleCloseMenu() {
-    dispatch(closeMenu());
+    store.dispatch({
+      type: "CLOSE_MENU",
+    });
   }
 
   return (

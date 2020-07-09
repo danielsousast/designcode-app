@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { Ionicons } from "@expo/vector-icons";
 
 export const Container = styled.View`
   width: 315px;
@@ -46,3 +47,20 @@ export const Text = styled.Text`
   line-height: 24px;
   color: #3c4560;
 `;
+
+export const CardTouch = styled.TouchableWithoutFeedback``;
+
+export const CloseButton = styled.TouchableOpacity`
+  width: 32px;
+  height: 32px;
+  background: #fff;
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+`;
+
+export const Icon = styled(Ionicons)``;

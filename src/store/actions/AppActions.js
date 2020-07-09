@@ -1,3 +1,5 @@
+import store from "../index";
+
 export function closeMenu() {
   return {
     type: "CLOSE_MENU",
@@ -5,8 +7,20 @@ export function closeMenu() {
 }
 
 export function openMenu() {
+  store.dispatch({
+    type: "OPEN_CARD",
+  });
+}
+
+export function closeCard() {
   return {
-    type: "OPEN_MENU",
+    type: "CLOSE_CARD",
+  };
+}
+
+export function openCard() {
+  return {
+    type: "OPEN_CARD",
   };
 }
 

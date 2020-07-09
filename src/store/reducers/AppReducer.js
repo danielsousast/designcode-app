@@ -18,6 +18,12 @@ const AppReducer = (state = initialState, action) => {
     case "SET_AVATAR": {
       return { avatar: action.avatar };
     }
+    case "CLOSE_CARD": {
+      return { action: "closeCard" };
+    }
+    case "OPEN_CARD": {
+      return { action: "openCard" };
+    }
     default:
       return state;
   }

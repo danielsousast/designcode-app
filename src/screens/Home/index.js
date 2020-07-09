@@ -119,7 +119,6 @@ export default function Home() {
 
       StatusBar.setBarStyle("dark-content", true);
     }
-    console.log("start");
   }, [action]);
 
   return (

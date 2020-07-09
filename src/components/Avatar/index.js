@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "./styles";
 import { useDispatch } from "react-redux";
-import { setName } from "../../store/actions/AppActions";
 
 export default function Avatar() {
   const [photo, setPhoto] = useState(

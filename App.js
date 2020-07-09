@@ -1,3 +1,9 @@
+if (__DEV__) {
+  import("./src/config/ReactotronConfig").then(() =>
+    console.log("Reactotron Configured")
+  );
+}
+
 import React, { useEffect } from "react";
 import { StatusBar } from "react-native";
 import { Provider } from "react-redux";

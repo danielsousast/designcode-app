@@ -23,13 +23,15 @@
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [Typescript](https://www.typescriptlang.org//)
+- [Javascript](https://www.javascript.com/)
+- [Expo](https://expo.io/)
 - [React Native](https://facebook.github.io/react-native/)
 - [Styled Components](https://styled-components.com/)
 
 ## 💻 Projeto
 
-O DesignCode é um projeto criado exclusivamente para fins acadêmicos a fim de se aplicar conteitos de estilização e animação com React Native
+O DesignCode App é um projeto criado exclusivamente para fins acadêmicos a fim de se aplicar conteitos de estilização e animação com React Native.
+[Demo](https://www.linkedin.com/posts/danielsousast_reactnative-activity-6686690365832994816-CnhL)
 
 ## 🤔 Como contribuir
 

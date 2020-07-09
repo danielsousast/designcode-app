@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo, useRef } from "react";
 import { TouchableWithoutFeedback, Keyboard } from "react-native";
 import { BlurView } from "expo-blur";
 
@@ -13,27 +13,38 @@ import {
   IconEmail,
   IconPassword,
 } from "./styles";
+import Success from "../Success";
+import Loading from "../Loading";
 
 export default function ModalLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [iconEmail, setIconEmail] = useState(
-    require("../../../assets/icon-email.png")
-  );
-  const [iconPassword, setIconPassword] = useState(
-    require("../../../assets/icon-password.png")
-  );
+  const [successful, setSuccessful] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  function handleLogin() {}
+  const defaultIconEmail = require("../../../assets/icon-email.png");
+  const defaultIconPassword = require("../../../assets/icon-password.png");
+
+  const [iconEmail, setIconEmail] = useState(defaultIconEmail);
+  const [iconPassword, setIconPassword] = useState(defaultIconPassword);
+
+  function handleLogin() {
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      setSuccessful(true);
+    }, 2000);
+  }
 
   function focusEmail() {
-    setIconPassword(require("../../../assets/icon-password.png"));
     setIconEmail(require("../../../assets/icon-email-animated.gif"));
+    setIconPassword(defaultIconPassword);
   }
 
   function focusPassword() {
-    setIconEmail(require("../../../assets/icon-email.png"));
     setIconPassword(require("../../../assets/icon-password-animated.gif"));
+    setIconEmail(defaultIconPassword);
   }
 
   function tapBackground() {
@@ -78,6 +89,8 @@ export default function ModalLogin() {
           <ButtonText>Log IN</ButtonText>
         </Button>
       </Modal>
+      <Success isActive={successful} />
+      <Loading isActive={loading} />
     </Container>
   );
 }

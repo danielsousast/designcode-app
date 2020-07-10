@@ -75,3 +75,5 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
   },
 });
+
+export const ButtonMenu = styled.TouchableOpacity``;

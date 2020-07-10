@@ -4,11 +4,14 @@ if (__DEV__) {
   );
 }
 
-import React, { useEffect } from "react";
+import React from "react";
 import { StatusBar } from "react-native";
 import { Provider } from "react-redux";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistor, store } from "./src/store";
+import Navigator from "./src/navigator";
 
 const client = new ApolloClient({
   uri: "https://graphql.contentful.com/content/v1/spaces/ldcl3ayg0mhx",
@@ -18,14 +21,13 @@ const client = new ApolloClient({
   },
 });
 
-import store from "./src/store";
-import Navigator from "./src/navigator";
-
 export default function App() {
   return (
     <ApolloProvider client={client}>
       <Provider store={store}>
-        <Navigator />
+        <PersistGate loading={null} persistor={persistor}>
+          <Navigator />
+        </PersistGate>
       </Provider>
       <StatusBar barStyle="dark-content" />
     </ApolloProvider>

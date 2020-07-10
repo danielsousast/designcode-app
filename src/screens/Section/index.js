@@ -11,11 +11,15 @@ import {
   Subtitle,
   Content,
   ScrollContainer,
+  PlayWrapper,
+  PlayView,
 } from "./styles";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { StatusBar, Linking } from "react-native";
 import Markdown from "react-native-showdown";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { PlayIcon } from "../../components/Icons";
 
 function Section() {
   const navigation = useNavigation();
@@ -34,6 +38,18 @@ function Section() {
         <Container>
           <Cover>
             <Image source={section.image} />
+            <PlayWrapper>
+              <TouchableOpacity
+                underlayColor="transparent"
+                onPress={() => {
+                  navigation.navigate("Video");
+                }}
+              >
+                <PlayView>
+                  <PlayIcon style={{ marginLeft: -10 }} />
+                </PlayView>
+              </TouchableOpacity>
+            </PlayWrapper>
             <Wrapper>
               <Logo source={section.logo} />
               <Subtitle>{section.subtitle}</Subtitle>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Animated, Dimensions, StatusBar } from "react-native";
 import { useDispatch } from "react-redux";
 import { LinearGradient } from "expo-linear-gradient";
-import store from "../../store";
+import { store } from "../../store";
 import {
   Container,
   Cover,

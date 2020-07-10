@@ -5,6 +5,7 @@ import {
   Easing,
   StyleSheet,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
@@ -14,12 +15,11 @@ import { useQuery } from "@apollo/react-hooks";
 import Card from "../../components/Card";
 import Course from "../../components/Course";
 import Menu from "../../components/Menu";
+import Notifications from "../../components/Notifications";
 import Logo from "../../components/Logo";
 import Avatar from "../../components/Avatar";
-import { NotificationIcon } from "../../components/Icons";
 import logos from "../../data/logos";
 import courses from "../../data/courses";
-import { openMenu } from "../../store/actions/AppActions";
 import {
   TitleBar,
   Title,
@@ -35,8 +35,9 @@ import {
   CardsContainer,
   CoursesContainer,
 } from "./styles";
-import store from "../../store";
+import { store } from "../../store";
 import ModalLogin from "../../components/ModalLogin";
+import NotificationButton from "../../components/NotificationButton";
 
 const CardsQuery = gql`
   {
@@ -79,12 +80,19 @@ export default function Home() {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const action = useSelector((state) => state.app.action);
+  const name = store.getState().app.name;
 
   const { loading, error, data } = useQuery(CardsQuery);
 
   function handleOpenMenu() {
     store.dispatch({
       type: "OPEN_MENU",
+    });
+  }
+
+  function handleOpenLogin() {
+    store.dispatch({
+      type: "OPEN_LOGIN",
     });
   }
 
@@ -125,9 +133,22 @@ export default function Home() {
     }
   }, [action]);
 
+  function handleAvatar() {
+    if (store.getState().app.name) {
+      store.dispatch({ type: "OPEN_MENU" });
+    } else {
+      store.dispatch({ type: "OPEN_LOGIN" });
+    }
+  }
+
+  function openNotif() {
+    store.dispatch({ type: "OPEN_NOTIF" });
+  }
+
   return (
     <RootView>
       <Menu />
+      <Notifications />
       <Animated.View
         style={[
           styles.animatedContainer,
@@ -140,15 +161,17 @@ export default function Home() {
         <SaveAreaContainer>
           <ScrollContainer showsVerticalScrollIndicator={false}>
             <TitleBar>
-              <ButtonAvatar onPress={handleOpenMenu}>
+              <ButtonAvatar onPress={handleAvatar}>
                 <Avatar />
               </ButtonAvatar>
               <Title>Welcome back,</Title>
-              <Name>Daniel Sousa</Name>
-              <NotificationIcon
-                color="#4775f2"
-                style={{ position: "absolute", top: 5, right: 20 }}
-              />
+              <Name>{name}</Name>
+              <TouchableOpacity
+                onPress={openNotif}
+                style={{ position: "absolute", right: 20, top: 0 }}
+              >
+                <NotificationButton />
+              </TouchableOpacity>
             </TitleBar>
             <ScrollLogo horizontal showsHorizontalScrollIndicator={false}>
               {logos.map((item, index) => (

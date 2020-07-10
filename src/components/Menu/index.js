@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Animated, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import firebase from "../../firebase";
+
 import {
   Cover,
   Image,
@@ -10,11 +12,11 @@ import {
   CloseView,
   Touchable,
   styles,
+  ButtonMenu,
 } from "./styles";
 import MenuItem from "../MenuItem";
 import { useSelector, useDispatch } from "react-redux";
-import { closeMenu } from "../../store/actions/AppActions";
-import store from "../../store";
+import { store } from "../../store";
 
 const { height, width } = Dimensions.get("window");
 
@@ -45,6 +47,14 @@ export default function Menu() {
     });
   }
 
+  function handleMenu(index) {
+    if (index == 3) {
+      store.dispatch({ type: "CLOSE_MENU" });
+      store.dispatch({ type: "SET_NAME", name: "" });
+      firebase.auth().signOut();
+    }
+  }
+
   return (
     <Animated.View style={[{ top: top }, styles.container]}>
       <Cover>
@@ -60,12 +70,9 @@ export default function Menu() {
 
       <Content>
         {items.map((item, index) => (
-          <MenuItem
-            key={index}
-            title={item.title}
-            text={item.text}
-            icon={item.icon}
-          />
+          <ButtonMenu key={index} onPress={() => handleMenu(index)}>
+            <MenuItem title={item.title} text={item.text} icon={item.icon} />
+          </ButtonMenu>
         ))}
       </Content>
     </Animated.View>

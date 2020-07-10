@@ -77,3 +77,20 @@ export const Content = styled.View`
   height: 1100px;
   padding: 20px;
 `;
+
+export const PlayWrapper = styled.View`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
+`;
+
+export const PlayView = styled.View`
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+  justify-content: center;
+  align-items: center;
+`;

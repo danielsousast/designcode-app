@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useRoute, useNavigation } from "@react-navigation/native";
 
 import Home from "../screens/Home";
 import Section from "../screens/Section";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import VideoScreen from "../screens/Video";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ export default function HomeStack() {
     >
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Section" component={Section} />
+      <Stack.Screen name="Video" component={VideoScreen} />
     </Stack.Navigator>
   );
 }

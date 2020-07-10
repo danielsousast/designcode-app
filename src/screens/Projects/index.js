@@ -5,7 +5,7 @@ import { Container, Mask } from "./styles";
 import Project from "../../components/Project";
 
 import projects from "../../data/projects";
-import store from "../../store";
+import { store } from "../../store";
 
 function getNextIndex(index) {
   var nextIndex = index + 1;
